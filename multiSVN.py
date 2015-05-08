@@ -12,11 +12,15 @@ class MultiSVN(ttp.TutorToolPlugin):
         ttp.TutorToolPlugin.__init__(self, config)
         self.client = pysvn.Client()
         self.client.callback_get_login = self.svn_credentials(username, password)
+        self.client.callback_ssl_server_trust_prompt = self.ssl_server_trust_prompt
 
     def svn_credentials(self, user, password):
         def get_login(realm, username, may_save):
             return True, user, password, False
         return get_login
+
+    def ssl_server_trust_prompt(self, trust_dict):
+    	return True, trust_dict['failures'], False
 
     def add(self):
         for repo in self.repo_list():
