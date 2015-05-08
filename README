@@ -1,0 +1,5 @@
+Start tutortool.py without arguments for usage info.
+
+Decide for a workspace and modify config, template and config-path in tutortool_config.py accordingly.
+
+This script should run on Linux, MacOS and Windows.
