@@ -66,7 +66,7 @@ class MultiSVN(ttp.TutorToolPlugin):
         for repo in self.repo_list():
             local_repo_path = os.path.join(self.local_path(), repo)
             self.client.checkin(local_repo_path, commit_message)
-            ic.Info.printi("Commit " + repo + " with message: \"commit_message\"")
+            ic.Info.printi("Commit " + repo + " with message: \"" + commit_message + "\"")
 
     def addci(self, commit_message):
         self.add()
