@@ -31,7 +31,8 @@ class TutorTool:
             self.print_usage()
             exit()
 
-        for i in range(1, len(argv)):
+        i = 1
+        while (i < len(argv)):
             if argv[i] in self.commands:
                 self.active_commands.append(argv[i])
             elif argv[i].startswith("ex"):
@@ -40,10 +41,12 @@ class TutorTool:
                 self.last_monday = True
             elif argv[i] == "-m" and i < len(argv) - 1:
                 self.commit_message = argv[i + 1]
+                i += 1
             else:
                 ic.Info.printe("Invalid command.")
                 self.print_usage()
                 exit()
+            i += 1
 
         if self.ex_list and not self.active_commands:
             self.last_monday = True
