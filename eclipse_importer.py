@@ -56,11 +56,11 @@ class EclipseImporter(ttp.TutorToolPlugin):
         project.write("\t<linkedResources>\n")
         for ex in ex_list:
             local_ex_path = os.path.join(self.local_path(), repo, ex)
-            if os.path.isdir(local_ex_path + "/src"):
+            if os.path.isdir(os.path.join(local_ex_path, "src")):
                 project.write("\t\t<link>\n")
                 project.write("\t\t\t<name>" + ex + "</name>\n")
                 project.write("\t\t\t<type>2</type>\n")
-                project.write("\t\t\t<location>" + local_ex_path + "/src</location>\n")
+                project.write("\t\t\t<location>" + os.path.join(local_ex_path, "src").replace("\\", "/") + "</location>\n")
                 project.write("\t\t</link>\n")
             file_list = [ f for f in os.listdir(local_ex_path) for extension in self.file_extensions() if f.endswith(extension) ]
             for f in file_list:
@@ -69,7 +69,7 @@ class EclipseImporter(ttp.TutorToolPlugin):
                 name = f if f.startswith("Feedback") else ex + "-" + f
                 project.write("\t\t\t<name>" + name + "</name>\n")
                 project.write("\t\t\t<type>1</type>\n")
-                project.write("\t\t\t<location>" + file_path + "</location>\n")
+                project.write("\t\t\t<location>" + file_path.replace("\\", "/") + "</location>\n")
                 project.write("\t\t</link>\n")
         project.write("\t</linkedResources>\n")
         project.write("</projectDescription>\n")
